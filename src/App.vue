@@ -1,17 +1,17 @@
 <template>
     <main>
-        <cx-header/>
-        <cx-assets-table/>
+        <cx-header />
+        <router-link to="/">Home</router-link>
+        <router-view class="container px-5 sm:px-20 py-20 flex justify-center"/>
     </main>
 </template>
 
 <script>
 import CxHeader from "@/components/CxHeader.vue";
-import CxAssetsTable from "@/components/CxAssetsTable.vue";
 export default {
   name: "App",
   components: {
-      CxHeader, CxAssetsTable
+      CxHeader
   }
 };
 </script>
