@@ -1,28 +1,24 @@
 <template>
-    <div id="app" class="bg-blue-400">
-        <img alt="Vue logo" src="./assets/logo.png" />
-        <HelloWorld msg="Welcome to Your Vue.js App" />
-    </div>
+    <main>
+        <cx-header/>
+        <cx-assets-table/>
+    </main>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
+import CxHeader from "@/components/CxHeader.vue";
+import CxAssetsTable from "@/components/CxAssetsTable.vue";
 export default {
   name: "App",
   components: {
-    HelloWorld
+      CxHeader, CxAssetsTable
   }
 };
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
