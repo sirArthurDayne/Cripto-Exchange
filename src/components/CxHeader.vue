@@ -6,9 +6,8 @@
             >
                 <div class="flex items-center flex-shrink-0 text-white mr-6">
                     <cx-icon class="mr-2" />
-                    <span class="font-semibold text-xl tracking-tight"
-                        >Cripto Exchange</span
-                    >
+                        <router-link :to="{name:'Home'}" class="font-semibold text-xl tracking-tight"
+                        >Cripto Exchange</router-link>
                 </div>
                 <div
                     class="hidden sm:block w-full block flex-grow lg:flex

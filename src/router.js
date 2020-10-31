@@ -3,6 +3,7 @@ import { createWebHistory, createRouter } from "vue-router";
 //Routes
 import Home from "@/views/Home";
 import About from "@/views/About";
+import CoinDetail from "@/views/CoinDetail";
 //add plugin to view VUe2
 // Vue.use(Router);
 
@@ -17,6 +18,11 @@ const routes = [
         path: "/About",
         name: "About",
         component: About
+    },
+    {
+        path: "/coin/:id",
+        name: "coin-detail",
+        component: CoinDetail
     }
 ];
 
