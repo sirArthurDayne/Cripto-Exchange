@@ -5,6 +5,7 @@
             tu fuente de informacion sobre el valor de
             criptomonedas.</p>
         <br>
+        <router-link to="/" class="mt-5 text-xl text-green-600 hover:underline">Regresar a Home</router-link>
     </div>
 </template>
 
