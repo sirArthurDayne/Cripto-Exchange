@@ -23,9 +23,10 @@
                 </td>
                 <td><bold>{{a.rank}}</bold></td>
                 <td>{{a.name}}</td>
-                <td>&dollar;{{a.priceUsd}}</td>
-                <td>{{a.marketCapUsd}}</td>
-                <td>{{a.changePercent24Hr}}</td>
+                <td>{{dollarFilter(a.priceUsd)}}</td>
+                <td>{{dollarFilter(a.marketCapUsd)}}</td>
+                <td :class="parseFloat(a.changePercent24Hr) < 0.00 ?
+                    'text-red-600 down' : 'text-green-600 up'">{{percentFilter(a.changePercent24Hr)}}</td>
                 <td class="hidden sm:block"></td>
             </tr>
         </tbody>
@@ -33,6 +34,7 @@
 </template>
 
 <script>
+import { dollarFilter, percentFilter } from "@/filter.js";
 export default {
     name: "CxAssetsTable",
 
@@ -41,6 +43,9 @@ export default {
             type: Array,
             default: () => []
         }
+    },
+    setup() {
+        return {dollarFilter, percentFilter};
     }
 };
 </script>
