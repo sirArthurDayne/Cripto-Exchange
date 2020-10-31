@@ -8,7 +8,10 @@
                 </div>
                 <div class="hidden sm:block w-full block flex-grow lg:flex
                 lg:items-center lg:w-auto">
-                    <div class="text-sm lg:flex-grow"></div>
+                    <div class="text-sm lg:flex-grow">
+                        <router-link to="/">Home</router-link> |
+                        <router-link to="/About">About</router-link>
+                    </div>
                 </div>
             </nav>
         </nav>
