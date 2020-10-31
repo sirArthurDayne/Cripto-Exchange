@@ -1,5 +1,5 @@
 // import Vue from "vue";
-import {createWebHistory, createRouter } from "vue-router";
+import { createWebHistory, createRouter } from "vue-router";
 //Routes
 import Home from "@/views/Home";
 import About from "@/views/About";
@@ -9,13 +9,13 @@ import About from "@/views/About";
 //start router instance Vue3 way
 const routes = [
     {
-        path:"/",
-        name:"Home",
+        path: "/",
+        name: "Home",
         component: Home
     },
     {
-        path:"/About",
-        name:"About",
+        path: "/About",
+        name: "About",
         component: About
     }
 ];
@@ -23,7 +23,7 @@ const routes = [
 const history = createWebHistory();
 
 const router = createRouter({
-  history,
-  routes,
+    history,
+    routes
 });
 export default router;
