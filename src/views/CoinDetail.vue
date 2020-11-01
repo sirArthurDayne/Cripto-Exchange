@@ -102,7 +102,7 @@
                     <td>{{ m.baseSymbol }} / {{ m.quoteSymbol }}</td>
                     <td>
                         <cx-button v-if="!m.url" @custom-click="getWebsite(m)"
-                            ><slot>Obtener Link</slot></cx-button
+                            :is-loading="m.isLoading ||false"><slot>Obtener Link</slot></cx-button
                         >
                         <a
                             v-else

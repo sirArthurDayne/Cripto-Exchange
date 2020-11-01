@@ -13,15 +13,25 @@ export default {
     components: { CxAssetsTable },
     data() {
         return {
-            isLoading: false,
-            assets: []
+            isLoading: false,//TODO: add spinner when support for vue3
+            assets: [],
+            interval:null
         };
     },
-    created() {
+    async created() {
         this.isLoading = true;
-        api.getAssets()
-            .then(assets => (this.assets = assets))
-            .finally(() => (this.isLoading = false));
+        this.assets = await api.getAssets();
+        this.isLoading = false;
+        this.refreshFETCH();
+    },
+    methods: {
+        refreshFETCH() {//allows to see new prices without reloading the page
+            this.interval = setInterval(
+            async () => {this.assets = await api.getAssets();}, 5000 );
+        }
+    },
+    beforeUnmount() {
+       clearInterval(this.interval);
     }
 };
 </script>
