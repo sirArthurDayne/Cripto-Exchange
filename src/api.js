@@ -13,15 +13,15 @@ const getDetails = async coin => {
     return response.data;
 }
 
-function getHistory(coin) {
+const getHistory = async coin => {
     const now = new Date();
     const end = now.getTime();
     now.setDate(now.getDate() - 1);
     const start = now.getTime();
 
-    return fetch(`${url}/assets/${coin}/history?interval=h1&start=${start}&end=${end}`)
-        .then(response => response.json())
-        .then(response => response.data);
+    let response = fetch(`${url}/assets/${coin}/history?interval=h1&start=${start}&end=${end}`);
+    response = await response.json();
+    return response.data;
 }
 
 const getMarkets = async coin => {
