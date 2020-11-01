@@ -1,6 +1,6 @@
 <template>
     <main>
-        <cx-header />
+        <cx-header :links="links"/>
         <router-view
             class="container px-5 sm:px-20 py-20 flex justify-center"
         />
@@ -13,6 +13,24 @@ export default {
     name: "App",
     components: {
         CxHeader
+    },
+    data() {
+        return {
+            links: [
+                {
+                    title: 'BTC',
+                    to: { name: 'coin-detail', params: { id: 'bitcoin' } }
+                },
+                {
+                    title: 'ETH',
+                    to: { name: 'coin-detail', params: { id: 'ethereum' } }
+                },
+                {
+                    title: 'XRP',
+                    to: { name: 'coin-detail', params: { id: 'xrp' } }
+                }
+            ]
+        }
     }
 };
 </script>

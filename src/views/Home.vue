@@ -1,6 +1,6 @@
 <template>
     <div>
-        <cx-assets-table :assets="assets"/>
+        <cx-assets-table :assets="assets" />
     </div>
 </template>
 
@@ -10,19 +10,18 @@ import CxAssetsTable from "@/components/CxAssetsTable.vue";
 
 export default {
     name: "Home",
-    components: { CxAssetsTable},
+    components: { CxAssetsTable },
     data() {
         return {
             isLoading: false,
-            assets: [],
-        }
+            assets: []
+        };
     },
-    created(){
+    created() {
         this.isLoading = true;
         api.getAssets()
             .then(assets => (this.assets = assets))
             .finally(() => (this.isLoading = false));
-
-     }
+    }
 };
 </script>
