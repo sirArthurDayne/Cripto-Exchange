@@ -3,18 +3,21 @@
         <thead>
             <tr class="bg-gray-100 border-b-2 border-gray-400">
                 <th></th>
-                <th>
-                    <span>Ranking</span>
+                <th :class="(this.sortOrder ==1) ? 'down' : 'up'">
+                    <span @click="changeSortOrder" class="underline cursor-pointer">Ranking</span>
                 </th>
                 <th>Nombre</th>
                 <th>Precio</th>
                 <th>Cap. de Mercado</th>
                 <th>Variación 24hs</th>
-                <td class="hidden sm:block"></td>
+                <td class="hidden sm:block">
+                    <input type="text" class="bg-gray-100 focus:outline-none border-b border-gray-400 py-2 px-4 block
+                    w-full leading-normal appearance-none" placeholder="Buscar..." id="filter" v-model="filter"/>
+                </td>
             </tr>
         </thead>
         <tbody>
-            <tr v-for="a in assets" :key="a.id"
+            <tr v-for="a in filteredAssets" :key="a.id"
                 class="border-b border-gray-200 hover:bg-gray-100 hover:bg-orange-100">
                 <td>
                     <img class="h-16 w-16"
@@ -46,6 +49,14 @@ export default {
 
     components: {PxButton},
 
+    data() {
+
+        return {
+            filter:"",
+            sortOrder: 1
+        }
+    },
+
     props: {
         assets: {
             type: Array,
@@ -58,6 +69,24 @@ export default {
     methods: {
         goToCoin(id) {
             this.$router.push({ name:"coin-detail", params: {id}});
+        },
+        changeSortOrder() {this.sortOrder = !this.sortOrder;}
+    },
+    computed: {
+        filteredAssets() {
+
+            return this.assets.filter(a =>
+                a.symbol.toLowerCase().includes(this.filter.toLowerCase()) ||
+                a.name.toLowerCase().includes(this.filter.toLowerCase())
+
+            )
+                .sort((a,b) => {
+
+                    if(parseInt(a.rank) < parseInt(b.rank))
+                        return this.sortOrder;
+
+                    return this.sortOrder *-1;//invert order
+            })
         }
     }
 };
