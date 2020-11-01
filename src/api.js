@@ -1,16 +1,16 @@
 
 const url = "https://api.coincap.io/v2";
 
-function getAssets() {
-    return fetch(`${url}/assets?limit=20`)
-        .then(response => response.json() )
-        .then(response => response.data);
+const getAssets = async () => {
+    let response = await fetch(`${url}/assets?limit=20`);
+    response = await response.json();
+    return response.data;
 }
 
-function getDetails(coin) {
-    return fetch(`${url}/assets/${coin}`)
-        .then(response => response.json() )
-        .then(response => response.data);
+const getDetails = async coin => {
+    let response = await fetch(`${url}/assets/${coin}`);
+    response = await response.json();
+    return response.data;
 }
 
 function getHistory(coin) {
@@ -24,16 +24,16 @@ function getHistory(coin) {
         .then(response => response.data);
 }
 
-function getMarkets(coin) {
-    return fetch(`${url}/assets/${coin}/markets?limit=10`)
-        .then(response => response.json())
-        .then(response => response.data);
+const getMarkets = async coin => {
+    let response = await fetch(`${url}/assets/${coin}/markets?limit=10`);
+    response = await response.json();
+    return response.data;
 }
 
-function getExchange(id) {
-    return fetch(`${url}/exchanges/${id}`)
-        .then(response => response.json())
-        .then(response => response.data);
+const getExchange = async id => {
+    let response = await fetch(`${url}/exchanges/${id}`);
+    response = await response.json();
+    return response.data;
 }
 
 
