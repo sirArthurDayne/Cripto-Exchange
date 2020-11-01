@@ -53,7 +53,7 @@ export default {
 
         return {
             filter:"",
-            sortOrder: 1
+            sortOrder: -1
         }
     },
 
