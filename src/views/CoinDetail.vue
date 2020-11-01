@@ -63,22 +63,43 @@
           <span class="text-xl"></span>
         </div>
       </div>
+
+      <!-- TODO:agregar grafico de crecimiento cuando sea compatible con vue3 -->
+
+      <h3 class="text-xl my-10">Mejores Ofertas de Cambio</h3>
+      <table>
+          <tr v-for="m in markets" :key="`${m.exchangeId}-${m.priceUsd}`" class="border-b">
+              <td>
+                  <b>{{m.exchangeId}}</b>
+              </td>
+              <td>{{dollarFilter(m.priceUsd)}}</td>
+              <td>{{m.baseSymbol}} / {{m.quoteSymbol}}</td>
+              <td>
+                  <cx-button v-if="!m.url" @custom-click="getWebsite(m)"><slot>Obtener Link</slot></cx-button>
+                  <a v-else class="hover:underline text-green-600" target="_blanck">{{m.url}}</a>
+              </td>
+          </tr>
+      </table>
+
     </template>
   </div>
 </template>
 
 <script>
+import CxButton from "@/components/CxButton.vue";
 import api from "@/api.js";
 import {dollarFilter, percentFilter} from "@/filter";
 
 export default {
     name: "CoinDetail",
+    components: {CxButton},
 
     data() {
         return {
             isLoading:false,
             asset: {},
-            history: []
+            history: [],
+            markets: []
         }
     },
 
@@ -109,12 +130,21 @@ export default {
             this.isLoading =true;
             Promise.all([
                 api.getDetails(id),
-                api.getHistory(id)
+                api.getHistory(id),
+                api.getMarkets(id)
             ])
-                .then(([asset, history]) => {
+                .then(([asset, history, markets]) => {
                     this.asset = asset;
                     this.history = history;
+                    this.markets = markets
                 }).finally(() => {this.isLoading=false});
+        },
+
+        getWebsite(exchange) {
+            return api.getExchange(exchange.exchangeId)
+                .then(response => {
+                    exchange.url = response.exchangeUrl;
+                });
         }
     }
 }
