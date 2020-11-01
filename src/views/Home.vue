@@ -10,16 +10,19 @@ import CxAssetsTable from "@/components/CxAssetsTable.vue";
 
 export default {
     name: "Home",
-    components: { CxAssetsTable },
+    components: { CxAssetsTable},
     data() {
         return {
-            assets: []
+            isLoading: false,
+            assets: [],
         }
     },
     created(){
+        this.isLoading = true;
         api.getAssets()
-            .then(assets => (this.assets = assets));
-        console.log(this.assets);
+            .then(assets => (this.assets = assets))
+            .finally(() => (this.isLoading = false));
+
      }
 };
 </script>

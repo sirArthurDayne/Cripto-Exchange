@@ -76,6 +76,7 @@ export default {
 
     data() {
         return {
+            isLoading:false,
             asset: {},
             history: []
         }
@@ -105,6 +106,7 @@ export default {
     methods: {
         getCoin() {
             const id = this.$route.params.id;
+            this.isLoading =true;
             Promise.all([
                 api.getDetails(id),
                 api.getHistory(id)
@@ -112,7 +114,7 @@ export default {
                 .then(([asset, history]) => {
                     this.asset = asset;
                     this.history = history;
-                });
+                }).finally(() => {this.isLoading=false});
         }
     }
 }
